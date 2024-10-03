@@ -1,6 +1,7 @@
-from rest_framework.test import APITestCase
 from rest_framework import status
-from user.models import User, Team
+from rest_framework.test import APITestCase
+
+from user.models import Team, User
 
 
 class UserViewSetTest(APITestCase):
