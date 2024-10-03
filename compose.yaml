@@ -8,9 +8,14 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - my_db:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER}" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
-  teams_crud:
+  application:
     build:
       context: .
     env_file:
@@ -27,4 +32,4 @@ services:
       - db
 
 volumes:
-  my_db:
+  postgres:
