@@ -16,6 +16,9 @@ import os
 
 from dotenv import load_dotenv
 
+env_path = Path(".") / ".env"
+load_dotenv(dotenv_path=env_path)
+
 # Build paths inside the project like this: BASE_DIR / "subdir".
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-9spo06&qwz$z77wbl2d62^ra0ru0l#c&epmovofzdqpcarx$l^"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = True
@@ -80,10 +83,6 @@ WSGI_APPLICATION = "drf_test.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-
-env_path = Path(".") / ".env"
-load_dotenv(dotenv_path=env_path)
 
 
 DATABASES = {
